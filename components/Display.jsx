@@ -1,41 +1,43 @@
-import React, { useState } from "react";
-import Confronts from "./Confronts";
-import { gql, useQuery } from "@apollo/client";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const GET_TEAMS = gql`
-  query {
-    confronts {
-      id
-      score1
-      score2
-      team1
-      team2
-    }
-  }
-`;
+function Display() {
+  const [data, setData] = useState([]);
 
-const Display = () => {
-  const { data, error, loading } = useQuery(GET_TEAMS);
-  if (loading) return <p>Loading...</p>;
+  useEffect(() => {
+    const fetchData = async () => {
+      const ids = [
+        1614368, 7969983, 8025416, 8631482, 9035902, 1909960, 1229763, 1071737,
+        1147402, 28258296,
+      ];
+      const responses = await Promise.all(
+        ids.map((id) =>
+          axios.get(`https://api.cartola.globo.com/time/id/${id}`)
+        )
+      );
+      setData(responses.map((res) => res.data));
+    };
 
-  if (error) return <p>Error{error.message}</p>;
-
-  console.log(GET_TEAMS);
-  console.log(data);
-  const weekConfronts = data.confronts;
+    fetchData();
+    console.log(data);
+  }, []);
 
   return (
-    <div className='my-4  mx-auto text-white  lg:w-[680px] h-full'>
-      <div>
-        <h1 className='text-center my-8 font-bold text-yellow-500 text-2xl'>
-          Rodada 5
-        </h1>
-        <div>
-          <Confronts weekConfronts={weekConfronts} />
-        </div>
-      </div>
+    <div className="my-4  mx-auto text-white  lg:w-[680px] h-full">
+      <h1 className="my-8 text-2xl font-bold text-center text-yellow-500">
+        Rodada {data[0]?.rodada_atual}
+      </h1>
+      {data.map((data) => {
+        return (
+          <div key={data.id}>
+            <p>{data.time.slug}</p>
+            <p>{data.pontos_campeonato}</p>
+            <p>{data.pontos}</p>
+          </div>
+        );
+      })}
     </div>
   );
-};
+}
 
 export default Display;

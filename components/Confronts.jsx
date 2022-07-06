@@ -3,29 +3,29 @@ import React from "react";
 const Confronts = ({ weekConfronts }) => {
   return (
     <div>
-      {weekConfronts.map((confronts, idx) => (
+      {weekConfronts.map((time, idx) => (
         <div
           key={idx}
           className='flex items-center justify-between w-[320px] mx-auto border rounded bg-slate-600 py-4'>
           <div>
-            <p className='text-2xl text-gray-50 p-2'>{confronts.team1}</p>
+            <p className='p-2 text-2xl text-gray-50'>{time.pontos_campeonato}</p>
           </div>
           <div className='flex items-center justify-between '>
             {/* Score */}
             <div className=''>
-              <p className='font-bold px-4 '>{confronts.score1}</p>
+              <p className='px-4 font-bold '>{time.pontos}</p>
             </div>
             <div>
-              <p className='font-bold px-2'>X</p>
+              <p className='px-2 font-bold'>X</p>
             </div>
             <div>
-              <p className='font-bold px-4'>{confronts.score2}</p>
+              <p className='px-4 font-bold'>{time.pontos}</p>
             </div>
             {/* Score */}
           </div>
-          <div>
-            <p className='text-2xl text-gray-50 p-2'>{confronts.team2}</p>
-          </div>
+          {/* <div>
+            <p className='p-2 text-2xl text-gray-50'>{confronts.team2}</p>
+          </div> */}
         </div>
       ))}
     </div>
