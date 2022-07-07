@@ -1,10 +1,6 @@
 import "../styles/globals.css";
-import Home from './index'
-
+import Home from "./index";
 
 export default function App() {
-  return (
-    
-      <Home />
-  )
+  return <Home />;
 }

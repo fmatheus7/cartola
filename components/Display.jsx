@@ -3,12 +3,13 @@ import axios from "axios";
 
 function Display() {
   const [data, setData] = useState([]);
+  const [sortedField, setSortedField] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       const ids = [
-        1614368, 7969983, 8025416, 8631482, 9035902, 1909960, 1229763, 1071737,
-        1147402, 28258296,
+        7969983, 8025416, 8631482, 9035902, 1909960, 1229763, 1071737, 1147402,
+        28258296, 1614368,
       ];
       const responses = await Promise.all(
         ids.map((id) =>
@@ -23,20 +24,31 @@ function Display() {
   }, []);
 
   return (
-    <div className="my-4  mx-auto text-white  lg:w-[680px] h-full">
-      <h1 className="my-8 text-2xl font-bold text-center text-yellow-500">
-        Rodada {data[0]?.rodada_atual}
-      </h1>
-      {data.map((data) => {
-        return (
-          <div key={data.id}>
-            <p>{data.time.slug}</p>
-            <p>{data.pontos_campeonato}</p>
-            <p>{data.pontos}</p>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className="my-4  mx-auto text-white  lg:w-[680px] h-full">
+        <h1 className="my-8 text-2xl font-bold text-center text-yellow-500">
+          Rodada {data[0]?.rodada_atual}
+        </h1>
+        <tbody>
+          <tr>
+            <th>Nome do time</th>
+            <th>Pontuação no campeonato</th>
+            <th>Pontuação da última rodada</th>
+          </tr>
+
+          {data.map((data) => {
+            return (
+              <tr key={data.id}>
+                <td>{data.time.slug}</td>
+                <td>{data.pontos_campeonato}</td>
+                <td>{data.pontos}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </div>
+      );
+    </>
   );
 }
 
