@@ -4,6 +4,7 @@ import axios from "axios";
 function Display() {
   const [data, setData] = useState([]);
   const [sortedField, setSortedField] = useState();
+  const [sorted, setSorted] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,31 +24,46 @@ function Display() {
     console.log(data);
   }, []);
 
+  const scoreArray = data.map((team) => {
+    return team.pontos;
+  });
+  const sortedScore = scoreArray.sort();
   return (
     <>
-      <div className="my-4  mx-auto text-white  lg:w-[680px] h-full">
-        <h1 className="my-8 text-2xl font-bold text-center text-yellow-500">
+      <div className='my-4  mx-auto text-white  lg:w-[680px] h-full'>
+        <h1 className='my-8 text-2xl font-bold text-center text-yellow-500'>
           Rodada {data[0]?.rodada_atual}
         </h1>
+        <button onClick={() => console.log("data", data)}>get data</button>
+        <button
+          className='p-4 rounded-2xl bg-slate-600'
+          onClick={() => console.log("data sorted", sortedd)}>
+          get data
+        </button>
         <tbody>
-          <tr>
+          <tr className='py-2'>
             <th>Nome do time</th>
             <th>Pontuação no campeonato</th>
             <th>Pontuação da última rodada</th>
           </tr>
 
-          {data.map((data) => {
+          {data?.map((data) => {
             return (
               <tr key={data.id}>
-                <td>{data.time.slug}</td>
-                <td>{data.pontos_campeonato}</td>
-                <td>{data.pontos}</td>
+                <td>{data.time.slug.toUpperCase()}</td>
+                <td>{data.pontos_campeonato.toFixed(2)}</td>
+                <td>{data.pontos.toFixed(2)}</td>
               </tr>
             );
           })}
         </tbody>
+        <h1>Sorted</h1>
+        <ul>
+          {sortedScore.map((name) => (
+            <li key={name}>{name}</li>
+          ))}
+        </ul>
       </div>
-      );
     </>
   );
 }
