@@ -25,9 +25,14 @@ function Display() {
   }, []);
 
   const scoreArray = data.map((team) => {
-    return team.pontos;
+    const sortedArray = {
+      time: team.time,
+      pontos_campeonato: team.pontos_campeonato,
+      pontos: team.pontos,
+    };
+    return sortedArray;
   });
-  const sortedScore = scoreArray.sort();
+  const sortedScore = scoreArray.sort((a, b) => b.pontos - a.pontos);
   return (
     <>
       <div className='my-4  mx-auto text-white  lg:w-[680px] h-full'>
@@ -37,7 +42,7 @@ function Display() {
         <button onClick={() => console.log("data", data)}>get data</button>
         <button
           className='p-4 rounded-2xl bg-slate-600'
-          onClick={() => console.log("data sorted", sortedd)}>
+          onClick={() => console.log("data sorted", sortedScore)}>
           get data
         </button>
         <tbody>
@@ -47,7 +52,7 @@ function Display() {
             <th>Pontuação da última rodada</th>
           </tr>
 
-          {data?.map((data) => {
+          {sortedScore?.map((data) => {
             return (
               <tr key={data.id}>
                 <td>{data.time.slug.toUpperCase()}</td>
@@ -57,12 +62,6 @@ function Display() {
             );
           })}
         </tbody>
-        <h1>Sorted</h1>
-        <ul>
-          {sortedScore.map((name) => (
-            <li key={name}>{name}</li>
-          ))}
-        </ul>
       </div>
     </>
   );
