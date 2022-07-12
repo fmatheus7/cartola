@@ -3,8 +3,6 @@ import axios from "axios";
 
 function Display() {
   const [data, setData] = useState([]);
-  // const [sortedAllTime, setSortedallTime] = useState([]);
-  // const [sortedRound, setSortedRound] = useState([]);
   const [sorted, setSorted] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
@@ -24,15 +22,6 @@ function Display() {
     console.log(data);
   }, []);
 
-  // const scoreArray = data.map((team) => {
-  //   const sortedArray = {
-  //     time: team.time,
-  //     pontos_campeonato: team.pontos_campeonato,
-  //     pontos: team.pontos,
-  //   };
-  //   return sortedArray;
-  // });
-
   const sortArrayObjs = function (arr, prop1, prop2) {
     let sort1 = [...arr].sort((a, b) => {
       if (a[prop1] == b[prop1]) {
@@ -48,17 +37,6 @@ function Display() {
   const sortedRound = sortArrayObjs(data, "pontos", "name");
   const sortedAllTime = sortArrayObjs(data, "pontos_campeonato", "name");
 
-  // const sortedByChamp = (data, prop1, prop2) => {
-  //   setSortedallTime(sortArrayObjs(data, prop1, prop2));
-  //   console.log(sortedAllTime);
-  // };
-  // const sortedByRound = (data, prop1, prop2) => {
-  //   setSortedRound(sortArrayObjs(data, prop1, prop2));
-  //   console.log(sortedAllTime);
-  // };
-  // const sort = (data, prop1, prop2) => {
-  //   setSorted(sortArrayObjs(data, prop1, prop2));
-  // };
   return (
     <>
       <div className='my-4  mx-auto text-white  lg:w-[680px] h-full'>
