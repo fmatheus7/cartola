@@ -42,39 +42,49 @@ function Display() {
         <h1 className='my-8 text-2xl font-bold text-center text-yellow-500'>
           Rodada {data[0]?.rodada_atual}
         </h1>
-        <button
-          className='py-4 rounded-2xl bg-red-200 mx-2'
-          onClick={() => setSorted(true)}>
-          Sorted by Campeonato
-        </button>
-        <button
-          className='py-4 rounded-2xl bg-red-200 mx-2'
-          onClick={() => setSorted(false)}>
-          Sorted by Total
-        </button>
         <tbody>
-          <tr className='py-2'>
-            <th>Nome do time</th>
-            <th>Pontuação no campeonato</th>
-            <th>Pontuação da última rodada</th>
+          <tr className='sm:py-1'>
+            <th className='sm:p-1'>Nome do time</th>
+            <th
+              onClick={() => setSorted(true)}
+              className='sm:p-1 cursor-pointer'>
+              Pontuação no campeonato
+            </th>
+            <th
+              className='sm:p-1 cursor-pointer'
+              onClick={() => setSorted(false)}>
+              Pontuação da última rodada
+            </th>
           </tr>
 
           {sorted
             ? data?.map((data) => {
                 return (
                   <tr key={data.id}>
-                    <td>{data.time.slug.toUpperCase()}</td>
-                    <td>{data.pontos_campeonato.toFixed(2)}</td>
-                    <td>{data.pontos.toFixed(2)}</td>
+                    <td className='sm:p-1 text-center'>
+                      {data.time.slug.toUpperCase()}
+                    </td>
+                    <td className='sm:p-1 text-center'>
+                      {data.pontos_campeonato.toFixed()}
+                    </td>
+                    <td className='sm:p-1 text-center'>
+                      {data.pontos.toFixed()}
+                    </td>
                   </tr>
                 );
               })
             : sortedRound?.map((data) => {
                 return (
                   <tr key={data.id}>
-                    <td>{data.time.slug.toUpperCase()}</td>
-                    <td>{data.pontos_campeonato.toFixed(2)}</td>
-                    <td>{data.pontos.toFixed(2)}</td>
+                    <td className='sm:p-1 text-center'>
+                      {data.time.slug.toUpperCase()}
+                    </td>
+                    <td className='sm:p-1 text-center'>
+                      {data.pontos_campeonato.toFixed()}
+                    </td>
+                    <td className='sm:p-1 text-center'>
+                      {data.pontos.toFixed()}
+                    </td>
                   </tr>
                 );
               })}
