@@ -4,6 +4,7 @@ import axios from "axios";
 function Display() {
   const [data, setData] = useState([]);
   const [sorted, setSorted] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const ids = [
@@ -35,8 +36,6 @@ function Display() {
   };
 
   const sortedRound = sortArrayObjs(data, "pontos", "name");
-  const sortedAllTime = sortArrayObjs(data, "pontos_campeonato", "name");
-
   return (
     <>
       <div className='my-4  mx-auto text-white  lg:w-[680px] h-full'>
@@ -45,10 +44,14 @@ function Display() {
         </h1>
         <button
           className='py-4 rounded-2xl bg-red-200 mx-2'
-          onClick={() => setSorted(!sorted)}>
+          onClick={() => setSorted(true)}>
           Sorted by Campeonato
         </button>
-
+        <button
+          className='py-4 rounded-2xl bg-red-200 mx-2'
+          onClick={() => setSorted(false)}>
+          Sorted by Total
+        </button>
         <tbody>
           <tr className='py-2'>
             <th>Nome do time</th>
