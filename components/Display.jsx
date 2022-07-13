@@ -38,22 +38,24 @@ function Display() {
   const sortedRound = sortArrayObjs(data, "pontos", "name");
   return (
     <>
-      <div className='my-4  mx-auto text-white  lg:w-[680px] h-full'>
-        <h1 className='my-8 text-2xl font-bold text-center text-yellow-500'>
+      <div className="my-4  mx-auto text-white  lg:w-[680px] h-full">
+        <h1 className="my-8 text-2xl font-bold text-center text-yellow-500">
           Rodada {data[0]?.rodada_atual}
         </h1>
         <tbody>
-          <tr className='sm:py-1'>
-            <th className='sm:p-1'>Nome do time</th>
+          <tr className="sm:py-1">
+            <th className="sm:p-1">Time</th>
             <th
               onClick={() => setSorted(true)}
-              className='sm:p-1 cursor-pointer'>
-              Pontuação no campeonato
+              className="sm:p-1 cursor-pointer"
+            >
+              Campeonato
             </th>
             <th
-              className='sm:p-1 cursor-pointer'
-              onClick={() => setSorted(false)}>
-              Pontuação da última rodada
+              className="sm:p-1 cursor-pointer"
+              onClick={() => setSorted(false)}
+            >
+              Rodada {data[0]?.rodada_atual}
             </th>
           </tr>
 
@@ -61,13 +63,13 @@ function Display() {
             ? data?.map((data) => {
                 return (
                   <tr key={data.id}>
-                    <td className='sm:p-1 text-center'>
+                    <td className="sm:p-1 text-center">
                       {data.time.slug.toUpperCase()}
                     </td>
-                    <td className='sm:p-1 text-center'>
+                    <td className="sm:p-1 text-center">
                       {data.pontos_campeonato.toFixed()}
                     </td>
-                    <td className='sm:p-1 text-center'>
+                    <td className="sm:p-1 text-center">
                       {data.pontos.toFixed()}
                     </td>
                   </tr>
@@ -76,13 +78,13 @@ function Display() {
             : sortedRound?.map((data) => {
                 return (
                   <tr key={data.id}>
-                    <td className='sm:p-1 text-center'>
+                    <td className="sm:p-1 text-center">
                       {data.time.slug.toUpperCase()}
                     </td>
-                    <td className='sm:p-1 text-center'>
+                    <td className="sm:p-1 text-center">
                       {data.pontos_campeonato.toFixed()}
                     </td>
-                    <td className='sm:p-1 text-center'>
+                    <td className="sm:p-1 text-center">
                       {data.pontos.toFixed()}
                     </td>
                   </tr>

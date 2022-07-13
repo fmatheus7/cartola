@@ -5,21 +5,26 @@ import logo from "../assets/imgs/ligaimg.png";
 
 const Navbar = (props) => {
   return (
-    <nav class="flex items-center justify-between flex-wrap bg-teal p-6">
-      <div class="flex items-center flex-no-shrink text-white mr-6">
-        <Image src={logo} class="h-8 w-8 mr-2" width="64" height="64" />
-        <span class="font-semibold text-xl tracking-tight">
-          GAROTEANTEAMPIONS LEAGUE
-        </span>
-        <div>
-          <Link href="/" className="">
-            <h1 className="text-2xl whitespace-normal bold">
-              Desafio Bolas de ouro
-            </h1>
-          </Link>
+    <div className="flex items-center ">
+      <nav className="w-full flex items-center justify-around flex-wrap bg-teal-500 p-6">
+        <div className="flex items-center flex-shrink-0 text-white mr-6">
+          <Image src={logo} className="h-8 w-8 mr-2" width="64" height="64" />
+          <span className="font-semibold text-xl tracking-tight">
+            GAROTEANTEAMPIONS <br></br>LEAGUE
+          </span>
         </div>
-      </div>
-    </nav>
+        <div className=" w-full block items-endflex-grow lg:flex lg:items-center lg:w-auto">
+          <div className="text-sm lg:flex-grow ">
+            <a
+              href="#"
+              class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 sm:ml-3"
+            >
+              Bolas de ouro
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 
